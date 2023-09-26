@@ -1,11 +1,13 @@
 package com.example.springcrud.repository;
 
 import com.example.springcrud.model.Student;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public  interface SpringRepository extends CrudRepository<Student,Integer> {
+
+public  interface SpringRepository extends MongoRepository<Student,Integer> {
 
 
 }

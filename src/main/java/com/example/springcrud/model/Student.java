@@ -1,12 +1,12 @@
 package com.example.springcrud.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 
-@Entity
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document("studentrecords")
 public class Student {
-    @Id @GeneratedValue
+    @Id
     private int id;
     private String name;
     private String branch;
