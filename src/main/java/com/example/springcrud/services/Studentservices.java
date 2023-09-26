@@ -26,12 +26,20 @@ public class Studentservices {
        Optional<Student> s1=springRepository.findById(s.getId());
        if(s1.isPresent())
        {
-           System.out.println("HI");
            Student student=s1.get();
            student.setBranch(s.getBranch());
            springRepository.save(student);
 
        }
 
+    }
+    public void deleteStudent(int id)
+    {
+        Optional<Student> s1=springRepository.findById(id);
+        if(s1.isPresent())
+        {
+            Student student=s1.get();
+            springRepository.delete(student);
+        }
     }
 }

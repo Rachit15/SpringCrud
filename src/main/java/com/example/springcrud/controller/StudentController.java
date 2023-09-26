@@ -29,4 +29,12 @@ public class StudentController {
         s.updateStudent(st);
         return "Updated Successfully";
     }
+    @DeleteMapping("/deletestudent")
+            public String deleteStudent(@RequestBody Student st)
+
+    {
+        int id=st.getId();
+        s.deleteStudent(id);
+        return "Deleted Successfully";
+    }
 }
