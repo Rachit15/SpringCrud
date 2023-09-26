@@ -23,4 +23,10 @@ public class StudentController {
         System.out.println("Student added successfully");
         return "Student added successfully";
     }
+    @PutMapping("/updatestudent")
+    public String updateStudent(@RequestBody Student st)
+    {
+        s.updateStudent(st);
+        return "Updated Successfully";
+    }
 }
