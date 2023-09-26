@@ -16,4 +16,8 @@ public class Studentservices {
         return (List<Student>)springRepository.findAll();
 
     }
+
+    public void addStudent(Student s){
+        springRepository.save(s);
+    }
 }

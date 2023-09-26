@@ -3,9 +3,7 @@ package com.example.springcrud.controller;
 import com.example.springcrud.model.Student;
 import com.example.springcrud.services.Studentservices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,7 +17,10 @@ public class StudentController {
         return s.getStudents();
 
     }
-
-
-
+    @PostMapping("/addstudent")
+    public String addStudent(@RequestBody Student stu){
+        s.addStudent(stu);
+        System.out.println("Student added successfully");
+        return "Student added successfully";
+    }
 }
