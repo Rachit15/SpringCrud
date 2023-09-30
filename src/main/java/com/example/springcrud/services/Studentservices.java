@@ -14,7 +14,9 @@ public class Studentservices {
     private SpringRepository springRepository;
     public List<Student> getStudents()
     {
-        return (List<Student>)springRepository.findAll();
+            return (List<Student>)springRepository.findAll();
+
+
 
     }
 

@@ -3,43 +3,80 @@ package com.example.springcrud.controller;
 import com.example.springcrud.model.Student;
 import com.example.springcrud.services.Studentservices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController@RequestMapping("/api")
 public class StudentController {
     @Autowired
     private Studentservices s;
     @GetMapping("/getStudents")
-    public List<Student> getList()
+    public ResponseEntity<List<Student>> getList()
     {
-        return s.getStudents();
+        List<Student> s1=s.getStudents();
+        if(s1.size()<=0)
+        {
+            return  ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.of(Optional.of(s1));
 
     }
     @PostMapping("/addstudent")
-    public String addStudent(@RequestBody Student stu){
-        s.addStudent(stu);
-        System.out.println("Student added successfully");
-        return "Student added successfully";
+    public ResponseEntity<String> addStudent(@RequestBody Student stu){
+
+        try {
+            s.addStudent(stu);
+            return ResponseEntity.ok("Student added successfully");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+
     }
     @PutMapping("/updatestudent")
-    public String updateStudent(@RequestBody Student st)
+    public ResponseEntity<String> updateStudent(@RequestBody Student st)
     {
-        s.updateStudent(st);
-        return "Updated Successfully";
+
+        try {
+            s.updateStudent(st);
+            return ResponseEntity.ok("Student updated Successfully");
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return  ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
     @DeleteMapping("/deletestudent")
-            public String deleteStudent(@RequestBody Student st)
+            public ResponseEntity<String> deleteStudent(@RequestBody Student st)
 
     {
-        int id=st.getId();
-        s.deleteStudent(id);
-        return "Deleted Successfully";
+        try {
+
+            int id = st.getId();
+            s.deleteStudent(id);
+            return ResponseEntity.ok("Student Deleted Successfully");
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
     @GetMapping("/getstudentsbybranch/{branch}")
-    public List<Student> getList(@PathVariable String branch)
+    public ResponseEntity<List<Student>> getList(@PathVariable String branch)
     {
-        return s.getStudentsByBranch(branch);
+        List<Student> s1=s.getStudentsByBranch(branch);
+        if(s1.size()<=0)
+        {
+            return  ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.of(Optional.of(s1));
     }
 }
