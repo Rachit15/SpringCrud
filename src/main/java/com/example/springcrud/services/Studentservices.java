@@ -42,4 +42,9 @@ public class Studentservices {
             springRepository.delete(student);
         }
     }
+    public List<Student> getStudentsByBranch(String branch)
+    {
+        return (List<Student>)springRepository.findStudentsByBranch(branch);
+
+    }
 }

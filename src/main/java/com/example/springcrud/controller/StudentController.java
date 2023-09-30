@@ -37,4 +37,9 @@ public class StudentController {
         s.deleteStudent(id);
         return "Deleted Successfully";
     }
+    @GetMapping("/getstudentsbybranch/{branch}")
+    public List<Student> getList(@PathVariable String branch)
+    {
+        return s.getStudentsByBranch(branch);
+    }
 }
